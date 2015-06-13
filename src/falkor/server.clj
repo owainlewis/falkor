@@ -1,5 +1,5 @@
-(ns extract.server
-  (:require [extract.core :as core]
+(ns falkor.server
+  (:require [falkor.core :as core]
             [compojure.core :refer :all]
             [compojure.handler :as handler]
             [cheshire.core :as json]

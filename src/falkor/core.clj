@@ -1,4 +1,4 @@
-(ns extract.core
+(ns falkor.core
   (:import [org.jsoup.Jsoup]
            [org.jsoup.nodes Document Element]))
 

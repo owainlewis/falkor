@@ -14,6 +14,33 @@ Extract all the homepage stories from BBC news
 CURL http://localhost:3000/api/query?url=http://bbc.co.uk/news&q=.title-link%20h3%20span
 ```
 
+Sample response
+
+```json
+[
+{
+"attributes": {
+"class": "title-link__title-text"
+},
+"tag": "span",
+"text": "Missing Ethan reunited with father"
+},
+{
+"attributes": {
+"class": "title-link__title-text"
+},
+"tag": "span",
+"text": "Clinton rally woos working Americans"
+},
+{
+"attributes": {
+"class": "title-link__title-text"
+},
+"tag": "span",
+"text": "Foos cancel two shows after Grohl fall"
+} ...
+```
+
 Extract all images from github.com
 
 ```

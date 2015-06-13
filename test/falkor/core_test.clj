@@ -1,6 +1,6 @@
-(ns extract.core-test
+(ns faklor.core-test
   (:require [clojure.test :refer :all]
-            [extract.core :refer :all]))
+            [falkor.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

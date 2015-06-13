@@ -1,5 +1,5 @@
 (ns falkor.server
-  (:require [falkor.core :as core]
+  (:require [falkor.parser :as falkor]
             [compojure.core :refer :all]
             [compojure.handler :as handler]
             [cheshire.core :as json]
@@ -20,7 +20,7 @@
   "The query handler is used to render any xpath query"
   [url xpath]
   (json-handler 200
-    (core/run-query url xpath)))
+    (falkor/run-query url xpath)))
 
 ;; **************************************************
 

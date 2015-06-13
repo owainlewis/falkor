@@ -1,4 +1,4 @@
-(ns falkor.core
+(ns falkor.parser
   (:import [org.jsoup.Jsoup]
            [org.jsoup.nodes Document Element]))
 

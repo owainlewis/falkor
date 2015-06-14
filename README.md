@@ -4,8 +4,6 @@ A web service for turning HTML pages into traversable JSON documents
 
 Very early stage development. Everything will break.
 
-![](http://elitistjerksports.com/wp-content/uploads/2010/07/falkor-3.jpg)
-
 ## Usage
 
 Extract all the homepage stories from BBC news

@@ -24,6 +24,11 @@
 
 ;; **************************************************
 
+;; ROUTES
+
+;; 1. Get a page basic structure and information
+;; Query (get all images) /api/page?query=img
+
 (defroutes app-routes
   (GET "/api/query" {params :query-params}
     (query-handler

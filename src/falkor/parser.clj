@@ -6,11 +6,10 @@
 ;; Low level API for parsing web pages into Clojure data structures
 ;; ****************************************************************
 
-(defn get-document [url]
+(defn get-document
+  ""
+  [url]
   (.get (org.jsoup.Jsoup/connect url)))
-
-;; (def d (get-document "https://news.ycombinator.com/"))
-;; (def rt (get-document "http://www.rottentomatoes.com"))
 
 (defn extract-attributes-from-element
   "Given an HTML element := extract all the attributes into a map"
@@ -22,6 +21,8 @@
               v (.getValue attr)]
           (assoc acc (keyword k) v)))
         {} attrs)))
+
+(defrecord DOMElement [tag text attributes])
 
 (defn element->map
   "Reduces a complex HTML element into a simple Clojure map"

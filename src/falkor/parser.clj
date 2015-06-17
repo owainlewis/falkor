@@ -7,7 +7,8 @@
 ;; ****************************************************************
 
 (defn get-document
-  ""
+  "Retrieve a web page and cast it to a Document object. 
+   TODO: Replace the HTTP element with an async HTTP client eventually"
   [url]
   (.get (org.jsoup.Jsoup/connect url)))
 

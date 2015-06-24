@@ -8,21 +8,17 @@ Very early stage development. Everything will break.
 
 Get all the title links from the Reddit.com home page
 
-```
-https://falkor-api.herokuapp.com/api/query?url=http://reddit.com&q=a.title
-```
- 
- Grab all the news stories from Digg.com
 
-```
+https://falkor-api.herokuapp.com/api/query?url=http://reddit.com&q=a.title
+
+Grab all the news stories from Digg.com
+
 https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=.story-title%20a
-```
 
 Extract all the images from Digg.com
 
-```
 https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=img[src]
-```
+
 ## License
 
 Copyright © 2015 Forward Digital Limited

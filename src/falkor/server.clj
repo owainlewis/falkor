@@ -13,14 +13,29 @@
    :headers { "Content-Type" "application/json" }
    :body (json/generate-string body {:pretty true})})
 
+(defn wrap-as-result [m url query]
+  {:url url
+   :query query
+   :results m})
+
 ;; Handlers
 ;; **************************************************
 
 (defn query-handler
   "The query handler is used to render any xpath query"
   [url xpath]
+  (try
+    (let [result (falkor/run-query url xpath)]
+      (json-handler 200
+       (wrap-as-result result url xpath)))
+  (catch Exception e
+    (json-handler 500
+      {:body "Request failed"}))))
+
+(defn root-handler
+  []
   (json-handler 200
-    (falkor/run-query url xpath)))
+    {:body "OK"}))
 
 ;; **************************************************
 
@@ -30,6 +45,7 @@
 ;; 2. Run a CSS selector query e.g. get all images) => /api/page?query=img
 
 (defroutes app-routes
+  (GET "/" [] (root-handler))
   (GET "/api/query" {params :query-params}
     (query-handler
       (get params "url") (get params "q")))

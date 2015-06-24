@@ -20,8 +20,9 @@ https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=.story-title%20
 
 Extract all the images from Digg.com
 
+```
 https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=img[src]
-
+```
 ## License
 
 Copyright © 2015 Forward Digital Limited

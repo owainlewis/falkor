@@ -6,44 +6,21 @@ Very early stage development. Everything will break.
 
 ## Usage
 
-Extract all the homepage stories from BBC news
+Get all the title links from the Reddit.com home page
 
 ```
-CURL http://localhost:3000/api/query?url=http://bbc.co.uk/news&q=.title-link%20h3%20span
+https://falkor-api.herokuapp.com/api/query?url=http://reddit.com&q=a.title
 ```
-
-Sample response
-
-```json
-[
-{
-"attributes": {
-"class": "title-link__title-text"
-},
-"tag": "span",
-"text": "Missing Ethan reunited with father"
-},
-{
-"attributes": {
-"class": "title-link__title-text"
-},
-"tag": "span",
-"text": "Clinton rally woos working Americans"
-},
-{
-"attributes": {
-"class": "title-link__title-text"
-},
-"tag": "span",
-"text": "Foos cancel two shows after Grohl fall"
-} ...
-```
-
-Extract all images from github.com
+ 
+ Grab all the news stories from Digg.com
 
 ```
-CURL http://localhost:3001/api/query?url=http://github.com&q=img
+https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=.story-title%20a
 ```
+
+Extract all the images from Digg.com
+
+https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=img[src]
 
 ## License
 

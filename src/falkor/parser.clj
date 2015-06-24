@@ -28,7 +28,9 @@
 (defrecord DOMElement [tag text attributes])
 
 (defn element->map
-  "Reduces a complex HTML element into a simple Clojure map"
+  "Reduces a complex HTML element into a simple Clojure map.
+   This abstracts away the need for complex rules around turning different element types
+   into sensible representations"
   ([element render-children]
   (let [base-element { :tag (.tagName element)
                        :text (.ownText element)}
@@ -45,10 +47,14 @@
 
 (def as-clojure (partial mapv element->map))
 
-(defn ? [doc xpath]
+(defn ?
+  "Select an element in a document by xpath selector"
+  [^org.jsoup.nodes.Document doc xpath]
   (.select doc (name xpath)))
 
-(defn ?> [url xpath]
+(defn ?>
+  "Query a URL for a given xpath selector"
+  [url xpath]
   (? (get-document url) xpath))
 
 (defn filter-by
@@ -61,7 +67,7 @@
     (fn [m]
       (= (get-in m k) v)) xs))
 
-(defn ??
+(defn ??>
   "Given a document : run an xpath query and return the result
    transformed into an internal map"
   [doc xpath]
@@ -71,7 +77,7 @@
 ;; ***********************************************
 
 (defn run-query [url xpath]
-  (?? (get-document url) xpath))
+  (??> (get-document url) xpath))
 
 ;; Utility functions (WIP)
 ;; ***********************************************

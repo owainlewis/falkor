@@ -19,6 +19,16 @@ Extract all the images from Digg.com
 
 https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=img[src]
 
+## TODO
+
+Filters to remove some of the attribute cruft
+
+For example if we just want to extract the text for an element and ignore the other attributes
+
+```
+&filter=[text]
+```
+
 ## License
 
 Copyright © 2015 Forward Digital Limited

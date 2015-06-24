@@ -11,6 +11,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.3.4"]
                  [environ "0.5.0"]
+                 [http-kit "2.1.18"]
                  [ring/ring-core "1.3.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
                  [ring/ring-json "0.3.1"]

@@ -1,7 +1,7 @@
-(ns faklor.core-test
+(ns falkor.core-test
   (:require [clojure.test :refer :all]
-            [falkor.core :refer :all]))
+            [falkor.parser :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-compiles
+  (testing "A OK"
+    (is (= 1 1))))

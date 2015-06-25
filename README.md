@@ -2,7 +2,14 @@
 
 A web service for turning HTML pages into traversable JSON documents
 
-Very early stage development. Everything will break.
+Very early stage development. If you have any feature requests just create an issue on the project
+
+## Comming soon
+
++ Better error handling
++ CORS
++ Query filtering (return only certain attributes)
++ Fetching multiple elements in a single request ( e.g [h1 > a, .subtitle] )
 
 ## Usage
 

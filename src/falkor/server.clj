@@ -7,10 +7,21 @@
             [ring.util.response :refer [resource-response response]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [compojure.route :as route]))
+          
+(defn allow-cross-origin
+  "middleware function to allow crosss origin"
+  [handler]
+  (fn [request]
+   (let [response (handler request)]
+    (assoc-in response [:headers "Access-Control-Allow-Origin"]
+         "*"))))
 
 (defn json-handler [status body]
   {:status status
-   :headers { "Content-Type" "application/json" }
+   :headers { 
+     "Content-Type" "application/json" 
+     "Access-Control-Allow-Methods" "GET"
+     "Access-Control-Allow-Origin" "*" }
    :body (json/generate-string body {:pretty true})})
 
 (defn wrap-as-result [m url query]

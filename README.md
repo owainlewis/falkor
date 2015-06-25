@@ -4,6 +4,18 @@ A web service for turning HTML pages into traversable JSON documents
 
 Very early stage development. If you have any feature requests just create an issue on the project
 
+## Getting started
+
+Running the server locally
+
+```
+lein uberjar
+docker build -t falkor .
+docker run -t falkor
+
+# Visit http://localhost:5000
+```
+
 ## Comming soon
 
 + Better error handling

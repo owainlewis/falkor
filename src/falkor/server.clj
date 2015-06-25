@@ -9,7 +9,7 @@
             [compojure.route :as route]))
           
 (defn allow-cross-origin
-  "middleware function to allow crosss origin"
+  "Middleware function to allow crosss origin"
   [handler]
   (fn [request]
    (let [response (handler request)]

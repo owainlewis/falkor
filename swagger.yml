@@ -1,0 +1,27 @@
+swagger: '2.0'
+info:
+  version: "0.1"
+  title: Falkor API
+  description: An API for web scrapping
+paths:
+  /query:
+    get:
+      description: Execute a simple CSS selector query
+      parameters:
+        -
+          name: url
+          in: query
+          description: A webpage URL to query
+          required: true
+          type: string
+        -
+          name: query
+          in: query
+          description: The CSS selector query to execute e.g a[href]
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Bad request

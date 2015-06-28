@@ -1,47 +1,28 @@
 (ns falkor.server
   (:require [falkor.parser :as falkor]
+            [falkor.util :refer [enforce-params json-handler wrap-as-result]]
             [compojure.core :refer :all]
             [compojure.handler :as handler]
-            [cheshire.core :as json]
             [ring.middleware.json :as middleware]
             [ring.util.response :refer [resource-response response]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [compojure.route :as route]))
-          
-(defn allow-cross-origin
-  "Middleware function to allow crosss origin"
-  [handler]
-  (fn [request]
-   (let [response (handler request)]
-    (assoc-in response [:headers "Access-Control-Allow-Origin"]
-         "*"))))
-
-(defn json-handler [status body]
-  {:status status
-   :headers { 
-     "Content-Type" "application/json" 
-     "Access-Control-Allow-Methods" "GET"
-     "Access-Control-Allow-Origin" "*" }
-   :body (json/generate-string body {:pretty true})})
-
-(defn wrap-as-result [m url query]
-  {:url url
-   :query query
-   :results m})
 
 ;; Handlers
 ;; **************************************************
 
 (defn query-handler
   "The query handler is used to render any xpath query"
-  [url xpath]
-  (try
-    (let [result (falkor/run-query url xpath)]
-      (json-handler 200
-       (wrap-as-result result url xpath)))
-  (catch Exception e
-    (json-handler 500
-      {:body "Request failed"}))))
+  [params]
+  (let [{:strs [url query] :as q} params]
+    (enforce-params {:url url :query query}
+      (try
+        (let [result (falkor/run-query url query)]
+          (json-handler 200
+           (wrap-as-result result url query)))
+      (catch Exception e
+        (json-handler 500
+          {:body "Request failed"}))))))
 
 (defn root-handler
   []
@@ -56,10 +37,12 @@
 ;; 2. Run a CSS selector query e.g. get all images) => /api/page?query=img
 
 (defroutes app-routes
+
   (GET "/" [] (root-handler))
+
   (GET "/api/query" {params :query-params}
-    (query-handler
-      (get params "url") (get params "q")))
+    (query-handler params))
+
   (route/not-found "<h1>Page not found</h1>"))
 
 (def app

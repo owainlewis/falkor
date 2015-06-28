@@ -1,6 +1,7 @@
 (ns falkor.server
   (:require [falkor.parser :as falkor]
             [falkor.util :refer [enforce-params json-handler wrap-as-result]]
+            [falkor.middleware :as logging]
             [compojure.core :refer :all]
             [compojure.handler :as handler]
             [ring.middleware.json :as middleware]
@@ -48,6 +49,7 @@
 (def app
   (-> app-routes
       handler/api
+      logging/wrap-logging
       (wrap-defaults api-defaults)))
 
 (def handler app)

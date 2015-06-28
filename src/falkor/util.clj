@@ -17,10 +17,10 @@
     (if (empty? missing#)
       ~@body
       (let [msg# (str "The following params are missing: "
-                        (->> missing#
-                            (map name)
-                            (interpose " ")
-                            (apply str)))]
+                        (->> (identity missing#)
+                             (map name)
+                             (interpose " ")
+                             (apply str)))]
         (json-handler 400
           {:status 400
            :error msg#})))))

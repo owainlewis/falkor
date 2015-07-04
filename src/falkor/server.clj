@@ -37,17 +37,21 @@
 ;; 1. Get a page basic structure and information
 ;; 2. Run a CSS selector query e.g. get all images) => /api/page?query=img
 
-(defroutes app-routes
-
-  (GET "/" [] (root-handler))
+(defroutes api-routes
 
   (GET "/api/query" {params :query-params}
-    (query-handler params))
+    (query-handler params)))
 
+(defroutes base-routes
+  (GET "/" []
+    (response "OK"))
+  (route/resources "/")
   (route/not-found "<h1>Page not found</h1>"))
 
+(def all-routes (routes api-routes base-routes))
+
 (def app
-  (-> app-routes
+  (-> all-routes
       handler/api
       logging/wrap-logging
       (wrap-defaults api-defaults)))

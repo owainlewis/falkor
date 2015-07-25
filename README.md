@@ -27,16 +27,15 @@ docker run -t falkor
 
 Get all the title links from the Reddit.com home page
 
-
-https://falkor-api.herokuapp.com/api/query?url=http://reddit.com&q=a.title
+https://falkor-api.herokuapp.com/api/query?url=http://reddit.com&query=a.title
 
 Grab all the news stories from Digg.com
 
-https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=.story-title%20a
+https://falkor-api.herokuapp.com/api/query?url=http://digg.com&query=.story-title%20a
 
 Extract all the images from Digg.com
 
-https://falkor-api.herokuapp.com/api/query?url=http://digg.com&q=img[src]
+https://falkor-api.herokuapp.com/api/query?url=http://digg.com&query=img[src]
 
 ## TODO
 

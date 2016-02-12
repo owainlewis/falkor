@@ -2,10 +2,6 @@
   (:import [org.jsoup.Jsoup]
            [org.jsoup.nodes Document Element]))
 
-;; ****************************************************************
-;; Low level API for parsing web pages into Clojure data structures
-;; ****************************************************************
-
 (defn get-document
   "Retrieve a web page and cast it to a Document object.
    TODO: Replace the HTTP element with an async HTTP client eventually"
@@ -22,8 +18,6 @@
               v (.getValue attr)]
           (assoc acc (keyword k) v)))
         {} attrs)))
-
-;; ***********************************************
 
 (defrecord DOMElement [tag text attributes])
 
@@ -42,8 +36,6 @@
     (merge base-element {:attributes attributes}))))
   ([element]
     (element->map element false)))
-
-;; ***********************************************
 
 (def as-clojure (partial mapv element->map))
 
@@ -74,13 +66,8 @@
   (->> (? doc xpath)
        (map element->map)))
 
-;; ***********************************************
-
 (defn run-query [url xpath]
   (??> (get-document url) xpath))
-
-;; Utility functions (WIP)
-;; ***********************************************
 
 (def first-selector (comp element->map first ?>))
 

@@ -9,9 +9,6 @@
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [compojure.route :as route]))
 
-;; Handlers
-;; **************************************************
-
 (defn query-handler
   "The query handler is used to render any xpath query"
   [params]
@@ -30,15 +27,7 @@
   (json-handler 200
     {:body "OK"}))
 
-;; **************************************************
-
-;; ROUTES
-
-;; 1. Get a page basic structure and information
-;; 2. Run a CSS selector query e.g. get all images) => /api/page?query=img
-
 (defroutes api-routes
-
   (GET "/api/query" {params :query-params}
     (query-handler params)))
 

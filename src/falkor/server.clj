@@ -22,10 +22,8 @@
         (json-handler 500
           {:body "Request failed"}))))))
 
-(defn root-handler
-  []
-  (json-handler 200
-    {:body "OK"}))
+(defn root-handler []
+  (json-handler 200 {:body "OK"}))
 
 (defroutes api-routes
   (GET "/api/query" {params :query-params}
